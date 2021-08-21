@@ -7,9 +7,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.IntFunction;
 import java.util.function.UnaryOperator;
+import java.util.RandomAccess;
 
 @SuppressWarnings("unchecked")
-public class LimitedCapacityArrayList<E> {
+public class LimitedCapacityArrayList<E> implements RandomAccess {
 
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
     private static final int DEFAULT_MAXIMUM_CAPACITY = Integer.MAX_VALUE;
