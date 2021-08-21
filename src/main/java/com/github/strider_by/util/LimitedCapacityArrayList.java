@@ -36,18 +36,15 @@ public class LimitedCapacityArrayList<E> {
         this.storage = new Object[initialCapacity];
         this.maxCapacity = maxCapacity;
     }
-
     
     public int size() {
         return cursor;
     }
 
-    
     public boolean isEmpty() {
         return cursor == 0;
     }
 
-    
     public boolean contains(Object o) {
         for (int i = 0; i < cursor; i++) {
             Object current = storage[i];
@@ -59,12 +56,10 @@ public class LimitedCapacityArrayList<E> {
         return false;
     }
 
-    
     public Object[] toArray() {
         return Arrays.copyOf(storage, cursor);
     }
 
-    
     public <T> T[] toArray(T[] a) {
         return (T[]) Arrays.copyOf(storage, cursor + 1, a.getClass());
     }
@@ -76,7 +71,6 @@ public class LimitedCapacityArrayList<E> {
         return newArray;
     }
 
-    
     public boolean add(E e) {
         if (!ensureCapacity()) {
             return false;
@@ -86,7 +80,6 @@ public class LimitedCapacityArrayList<E> {
         return true;
     }
 
-    
     public boolean remove(Object o) {
         for (int i = 0; i < cursor; i++) {
             Object current = storage[i];
@@ -99,7 +92,6 @@ public class LimitedCapacityArrayList<E> {
         return false;
     }
 
-    
     public boolean addAll(Collection<? extends E> c) {
         if (!ensureCapacity(c.size())) {
             return false;
@@ -111,7 +103,6 @@ public class LimitedCapacityArrayList<E> {
         return true;
     }
 
-    
     public boolean removeAll(Collection<?> c) {
         boolean storageChanged = false;
 
@@ -125,7 +116,6 @@ public class LimitedCapacityArrayList<E> {
 
         return storageChanged;
     }
-
 
     public boolean retainAll(Collection<?> c) {
         boolean storageChanged = false;
@@ -141,14 +131,12 @@ public class LimitedCapacityArrayList<E> {
         return storageChanged;
     }
 
-    
     public void replaceAll(UnaryOperator<E> operator) {
         for (int i = 0; i < cursor; i++) {
             storage[i] = operator.apply((E) storage[i]);
         }
     }
 
-    
     public void sort(Comparator<? super E> c) {
         for (int i = cursor - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
@@ -163,19 +151,16 @@ public class LimitedCapacityArrayList<E> {
         }
     }
 
-    
     public void clear() {
         cursor = 0;
         Arrays.fill(storage, null);
     }
 
-    
     public E get(int index) {
         checkIndex(index);
         return (E) storage[index];
     }
 
-    
     public E set(int index, E element) {
         checkIndex(index);
         E old = (E) storage[index];
@@ -184,7 +169,6 @@ public class LimitedCapacityArrayList<E> {
         return old;
     }
 
-    
     public boolean add(int index, E element) {
         checkIndex(index);
         if (!ensureCapacity()) {
@@ -199,7 +183,6 @@ public class LimitedCapacityArrayList<E> {
         return true;
     }
 
-    
     public E remove(int index) {
         checkIndex(index);
         E item = (E) storage[index];
@@ -212,7 +195,6 @@ public class LimitedCapacityArrayList<E> {
         return item;
     }
 
-    
     public int indexOf(Object o) {
         for (int i = 0; i < cursor; i++) {
             Object current = storage[i];
@@ -224,7 +206,6 @@ public class LimitedCapacityArrayList<E> {
         return -1;
     }
 
-    
     public int lastIndexOf(Object o) {
         for (int i = cursor - 1; i >= 0; i--) {
             Object current = storage[i];
